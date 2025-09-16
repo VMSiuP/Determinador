@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Determinador</title>
     
+    <!-- Manifest y Tema -->
     <link rel="manifest" href="manifest.json">
-    
     <meta name="theme-color" content="#ffffff">
     
+    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
+    <!-- Hoja de Estilos -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <!-- ENCABEZADO -->
         <header>
             <div class="theme-switcher">
                 <label class="switch">
@@ -26,86 +29,81 @@
                 <span>Modo oscuro</span>
             </div>
             <h1>DETERMINADOR</h1>
-            <p class="credits">Creado por Víctor Manuel Siu Puyén. Implementado por el Ministerio Público - Distrito Fiscal de Piura.</p>
-            <p class="description">Obtén paso a paso la pena privativa de libertad concreta a imponer considerando las diversas circunstancias que afectan la responsabilidad penal y el sistema de determinación.</p>
+            <p class="credits">Creado, desarrollado e implementado por <strong>Víctor Manuel Siu Puyén</strong>.</p>
+            <p class="description">Obtén paso a paso la pena privativa de libertad concreta a imponer, considerando las diversas circunstancias que afectan la responsabilidad penal y el sistema de determinación.</p>
         </header>
 
         <main>
+            <!-- MÓDULO 01: Pena Abstracta -->
             <section id="module01">
                 <div class="input-group">
-                    <p class="instruction">Ingresa los extremos mínimo y máximo de la pena abstracta del tipo penal</p>
+                    <p class="instruction">Ingresa los extremos mínimo y máximo de la pena abstracta del tipo penal.</p>
                     <div class="pena-inputs">
                         <fieldset>
                             <legend>Extremo mínimo del tipo</legend>
-                            <input type="number" id="minAnos" placeholder="Años" min="0">
-                            <input type="number" id="minMeses" placeholder="Meses" min="0" max="11">
-                            <input type="number" id="minDias" placeholder="Días" min="0" max="29">
+                            <input type="number" id="minAnos" placeholder="Años" min="0" inputmode="numeric">
+                            <input type="number" id="minMeses" placeholder="Meses" min="0" max="11" inputmode="numeric">
+                            <input type="number" id="minDias" placeholder="Días" min="0" max="29" inputmode="numeric">
                         </fieldset>
                         <fieldset>
                             <legend>Extremo máximo del tipo</legend>
-                            <input type="number" id="maxAnos" placeholder="Años" min="0">
-                            <input type="number" id="maxMeses" placeholder="Meses" min="0" max="11">
-                            <input type="number" id="maxDias" placeholder="Días" min="0" max="29">
+                            <input type="number" id="maxAnos" placeholder="Años" min="0" inputmode="numeric">
+                            <input type="number" id="maxMeses" placeholder="Meses" min="0" max="11" inputmode="numeric">
+                            <input type="number" id="maxDias" placeholder="Días" min="0" max="29" inputmode="numeric">
                         </fieldset>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label for="circunstancias">¿Tienes circunstancias agravantes cualificadas o circunstancias atenuantes privilegiadas?</label>
+                    <label for="circunstancias">¿Tienes circunstancias agravantes cualificadas o atenuantes privilegiadas?</label>
                     <select id="circunstancias">
-                        <option value="no" selected>No.</option>
-                        <option value="incremento">Sí. Por encima del máximo legal.</option>
-                        <option value="disminucion">Sí. Por debajo del mínimo legal.</option>
-                        <option value="ambas">Sí. Ambas.</option>
+                        <option value="" selected disabled>Seleccione una opción</option>
+                        <option value="no">No.</option>
+                        <option value="incremento">Sí, por encima del máximo legal.</option>
+                        <option value="disminucion">Sí, por debajo del mínimo legal.</option>
+                        <option value="ambas">Sí, ambas.</option>
                     </select>
                 </div>
                 
                 <div id="submoduloIncremento" class="submodule hidden">
                     <h3 class="submodule-title">Incremento sobre el máximo</h3>
-                    <label for="incrementoFactor">Seleccione el incremento:</label>
-                    <select id="incrementoFactor">
-                        <option value="0" selected disabled>Seleccione</option>
-                        <option value="2/3">2/3 (Reincidencia agravada)</option>
-                        <option value="1/2">1/2 (Reincidencia simple, Habitualidad agravada, Funcionario)</option>
-                        <option value="1/3">1/3 (Habitualidad simple, Uso de menor, Parentesco, Continuado)</option>
-                    </select>
+                    <div class="checkbox-group">
+                        <div><label><input type="checkbox" name="incrementoFactor" value="2"> 2x (Uso de menor cualificado)</label></div>
+                        <div><label><input type="checkbox" name="incrementoFactor" value="2/3"> 2/3 (Reincidencia agravada)</label></div>
+                        <div><label><input type="checkbox" name="incrementoFactor" value="1/2"> 1/2 (Reincidencia simple, Habitualidad agravada, Funcionario o servidor, Uso de menor agravado)</label></div>
+                        <div><label><input type="checkbox" name="incrementoFactor" value="1/3"> 1/3 (Habitualidad simple, Uso de menor simple, Parentesco)</label></div>
+                    </div>
+                    <button id="btnCalcularIncremento" class="main-button">Calcular</button>
                 </div>
 
                 <div id="submoduloDisminucion" class="submodule hidden">
                     <h3 class="submodule-title">Disminución bajo el mínimo</h3>
-                    <p>Seleccione una o más atenuantes:</p>
                     <div class="checkbox-group">
-                        <div><input type="checkbox" name="disminucionFactor" value="2/3"> 2/3 (Delito crediticio)</div>
-                        <div><input type="checkbox" name="disminucionFactor" value="1/2"> 1/2 (Tentativa de delito menos grave)</div>
-                        <div><input type="checkbox" name="disminucionFactor" value="1/3"> 1/3 (Tentativa de delito grave, etc.)</div>
-                        <div><input type="checkbox" name="disminucionFactor" value="1/4"> 1/4 (Retardo del procedimiento)</div>
-                        <div><input type="checkbox" name="disminucionFactor" value="1/6"> 1/6 (Tentativa especial. grave, etc.)</div>
-                        <div><input type="checkbox" name="disminucionFactor" value="1/7"> 1/7 (Reparación patrimonial del Robo)</div>
+                        <div><label><input type="checkbox" name="disminucionFactor" value="2/3"> 2/3 (Delito crediticio)</label></div>
+                        <div><label><input type="checkbox" name="disminucionFactor" value="1/2"> 1/2 (Tentativa de delito menos grave)</label></div>
+                        <div><label><input type="checkbox" name="disminucionFactor" value="1/3"> 1/3 (Tentativa de delito grave, Tentativa especial, Edad, Confesión sincera, Violencia insignificante abigeato)</label></div>
+                        <div><label><input type="checkbox" name="disminucionFactor" value="1/6"> 1/6 (Tentativa de delito especialmente grave)</label></div>
                     </div>
                     <button id="btnCalcularDisminucion" class="main-button">Calcular</button>
                 </div>
 
                 <div id="submoduloAmbas" class="submodule hidden">
                     <div id="submoduloIncrementoAmbas">
-                        <h3 class="submodule-title">Paso 1: Incremento sobre el máximo</h3>
-                        <label for="incrementoFactorAmbas">Seleccione el incremento:</label>
-                        <select id="incrementoFactorAmbas">
-                             <option value="0" selected disabled>Seleccione</option>
-                             <option value="2/3">2/3 (Reincidencia agravada)</option>
-                             <option value="1/2">1/2 (Reincidencia simple, Habitualidad agravada, Funcionario)</option>
-                             <option value="1/3">1/3 (Habitualidad simple, Uso de menor, Parentesco, Continuado)</option>
-                        </select>
+                         <h3 class="submodule-title">Paso 1: Incremento</h3>
+                         <div class="checkbox-group">
+                            <div><label><input type="checkbox" name="incrementoFactorAmbas" value="2"> 2x (Uso de menor cualificado)</label></div>
+                            <div><label><input type="checkbox" name="incrementoFactorAmbas" value="2/3"> 2/3 (Reincidencia agravada)</label></div>
+                            <div><label><input type="checkbox" name="incrementoFactorAmbas" value="1/2"> 1/2 (Reincidencia simple, Habitualidad agravada, Funcionario o servidor, Uso de menor agravado)</label></div>
+                            <div><label><input type="checkbox" name="incrementoFactorAmbas" value="1/3"> 1/3 (Habitualidad simple, Uso de menor simple, Parentesco)</label></div>
+                        </div>
                     </div>
                     <div id="submoduloDisminucionAmbas">
-                         <h3 class="submodule-title">Paso 2: Disminución bajo el mínimo</h3>
-                         <p>Seleccione una o más atenuantes:</p>
+                         <h3 class="submodule-title">Paso 2: Disminución</h3>
                          <div class="checkbox-group">
-                            <div><input type="checkbox" name="disminucionFactorAmbas" value="2/3"> 2/3 (Delito crediticio)</div>
-                            <div><input type="checkbox" name="disminucionFactorAmbas" value="1/2"> 1/2 (Tentativa de delito menos grave)</div>
-                            <div><input type="checkbox" name="disminucionFactorAmbas" value="1/3"> 1/3 (Tentativa de delito grave, etc.)</div>
-                            <div><input type="checkbox" name="disminucionFactorAmbas" value="1/4"> 1/4 (Retardo del procedimiento)</div>
-                            <div><input type="checkbox" name="disminucionFactorAmbas" value="1/6"> 1/6 (Tentativa especial. grave, etc.)</div>
-                            <div><input type="checkbox" name="disminucionFactorAmbas" value="1/7"> 1/7 (Reparación patrimonial del Robo)</div>
+                            <div><label><input type="checkbox" name="disminucionFactorAmbas" value="2/3"> 2/3 (Delito crediticio)</label></div>
+                            <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/2"> 1/2 (Tentativa de delito menos grave)</label></div>
+                            <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/3"> 1/3 (Tentativa de delito grave, Tentativa especial, Edad, Confesión sincera, Violencia insignificante abigeato)</label></div>
+                            <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/6"> 1/6 (Tentativa de delito especialmente grave)</label></div>
                         </div>
                     </div>
                     <button id="btnCalcularAmbas" class="main-button">Calcular</button>
@@ -113,118 +111,104 @@
 
                 <div id="resultadoModulo01" class="result-box hidden">
                     <h4>Nuevo Marco Penal</h4>
-                    <p id="textoResultadoModulo01"></p>
+                    <div id="textoResultadoModulo01" class="result-content"></div>
                 </div>
             </section>
 
             <section id="module02" class="hidden">
                 <h2>Elegir sistema de determinación</h2>
-                <div class="input-group">
-                    <label for="sistemaDeterminacion">Elige el sistema a emplear</label>
-                    <select id="sistemaDeterminacion">
-                        <option value="0" selected disabled>Seleccione</option>
-                        <option value="tercios">Sistema de tercios</option>
-                        <option value="escalonado">Sistema escalonado</option>
-                    </select>
-                </div>
+                <select id="sistemaDeterminacion">
+                    <option value="" selected disabled>Seleccione un sistema.</option>
+                    <option value="tercios">Sistema de tercios.</option>
+                    <option value="escalonado">Sistema escalonado.</option>
+                </select>
             </section>
             
             <section id="module03" class="hidden">
                 <h2>Sistema de tercios</h2>
-                <p class="description">Dividamos en tres partes la pena prevista en la ley para el delito.</p>
                 <div class="pena-display">
-                     <fieldset>
-                        <legend>Extremo mínimo</legend>
-                        <span id="terciosMinDisplay">-- Años, -- Meses, -- Días</span>
-                     </fieldset>
-                     <fieldset>
-                        <legend>Extremo máximo</legend>
-                        <span id="terciosMaxDisplay">-- Años, -- Meses, -- Días</span>
-                     </fieldset>
+                     <fieldset><legend>Extremo mínimo</legend><span id="terciosMinDisplay"></span></fieldset>
+                     <fieldset><legend>Extremo máximo</legend><span id="terciosMaxDisplay"></span></fieldset>
                 </div>
                 <button id="btnDividirTercios" class="main-button">Dividir</button>
                 <div id="resultadoModulo03" class="result-box hidden">
-                    <p id="equivalenciaTercio"></p>
-                    <p id="tercioInferior"></p>
-                    <p id="tercioMedio"></p>
-                    <p id="tercioSuperior"></p>
+                    <div class="result-content" id="contenidoResultadoModulo03"></div>
                     <div class="action-buttons">
-                        <button class="action-button copy-button" data-target="resultadoModulo03">Copiar</button>
-                        <button class="action-button whatsapp-button" data-target="resultadoModulo03">Compartir</button>
+                        <button class="action-button copy-button" data-target="contenidoResultadoModulo03">Copiar</button>
+                        <button class="action-button whatsapp-button" data-target="contenidoResultadoModulo03">Compartir</button>
                     </div>
                 </div>
             </section>
 
             <section id="module04" class="hidden">
                 <h2>Sistema escalonado</h2>
-                <p class="description">Dividamos entre la cantidad de agravantes previstas en la ley para el delito, obtengamos su valor, y sumemos la cantidad de agravantes.</p>
                 <div class="pena-display">
-                    <fieldset><legend>Extremo mínimo</legend><span id="escalonadoMinDisplay">-- Años, -- Meses, -- Días</span></fieldset>
-                    <fieldset><legend>Extremo máximo</legend><span id="escalonadoMaxDisplay">-- Años, -- Meses, -- Días</span></fieldset>
+                    <fieldset><legend>Extremo mínimo</legend><span id="escalonadoMinDisplay"></span></fieldset>
+                    <fieldset><legend>Extremo máximo</legend><span id="escalonadoMaxDisplay"></span></fieldset>
                 </div>
                 <div class="input-group-inline">
                     <label for="agravantesTipo">Cantidad de agravantes del tipo penal:</label>
-                    <input type="number" id="agravantesTipo" min="1">
+                    <input type="number" id="agravantesTipo" min="1" inputmode="numeric">
                 </div>
                 <div class="input-group-inline">
                     <label for="agravantesCaso">Cantidad de agravantes del caso concreto:</label>
-                    <input type="number" id="agravantesCaso" min="0">
+                    <input type="number" id="agravantesCaso" min="0" inputmode="numeric">
                 </div>
                 <button id="btnCalcularEscalonado" class="main-button">Calcular</button>
                 <div id="resultadoModulo04" class="result-box hidden">
-                    <p id="equivalenciaAgravante"></p>
-                    <p id="incrementoAgravantes"></p>
-                    <p id="resultadoFinalEscalonado"></p>
+                    <div class="result-content" id="contenidoResultadoModulo04"></div>
                     <div class="action-buttons">
-                        <button class="action-button copy-button" data-target="resultadoModulo04">Copiar</button>
-                        <button class="action-button whatsapp-button" data-target="resultadoModulo04">Compartir</button>
+                        <button class="action-button copy-button" data-target="contenidoResultadoModulo04">Copiar</button>
+                        <button class="action-button whatsapp-button" data-target="contenidoResultadoModulo04">Compartir</button>
                     </div>
                 </div>
             </section>
 
             <section id="module05" class="hidden">
-                 <h2>Reducciones procesales</h2>
-                 <p>Sobre el resultado anterior, aplica una reducción:</p>
-                 <div class="input-group-inline">
-                    <button id="btnTerminacion" class="secondary-button">Terminación anticipada (1/6)</button>
-                    <button id="btnConclusion" class="secondary-button">Conclusión anticipada (1/7)</button>
+                 <h2>Reducción sobre pena concreta</h2>
+                 <div class="checkbox-group">
+                    <div><label><input type="checkbox" name="reduccionPena" value="1/2"> 1/2 (Colaboración eficaz)</label></div>
+                    <div><label><input type="checkbox" name="reduccionPena" value="1/3"> 1/3 (Confesión sincera)</label></div>
+                    <div><label><input type="checkbox" name="reduccionPena" value="1/4"> 1/4 (Interés superior del niño, Plazo razonable)</label></div>
+                    <div><label><input type="checkbox" name="reduccionPena" value="1/6"> 1/6 (Terminación anticipada, Violencia o amenaza mínima, Valor del bien no supera 5% UIT, Arma simulada)</label></div>
+                    <div><label><input type="checkbox" name="reduccionPena" value="1/7"> 1/7 (Conclusión anticipada, Reparación espontánea del daño, Devolución del bien)</label></div>
                  </div>
+                 <button id="btnCalcularReduccion" class="main-button">Calcular Reducción</button>
                  <div id="resultadoModulo05" class="result-box hidden">
-                     <p id="resultadoFinalProcesal"></p>
-                     <div class="action-buttons">
-                        <button class="action-button copy-button" data-target="resultadoModulo05">Copiar</button>
-                        <button class="action-button whatsapp-button" data-target="resultadoModulo05">Compartir</button>
+                    <div class="result-content" id="contenidoResultadoModulo05"></div>
+                    <div class="action-buttons">
+                        <button class="action-button copy-button" data-target="contenidoResultadoModulo05">Copiar</button>
+                        <button class="action-button whatsapp-button" data-target="contenidoResultadoModulo05">Compartir</button>
                     </div>
                  </div>
             </section>
 
             <section id="module06" class="hidden">
                 <h2>Conversión a Jornadas de servicios comunitarios</h2>
-                <p>Convierte la pena final si no supera los 3 años.</p>
                 <button id="btnConvertirJornadas" class="main-button">Convertir</button>
                 <div id="resultadoModulo06" class="result-box hidden">
-                    <p id="resultadoJornadas"></p>
+                    <div class="result-content" id="contenidoResultadoModulo06"></div>
                     <div class="action-buttons">
-                       <button class="action-button copy-button" data-target="resultadoModulo06">Copiar</button>
-                       <button class="action-button whatsapp-button" data-target="resultadoModulo06">Compartir</button>
+                       <button class="action-button copy-button" data-target="contenidoResultadoModulo06">Copiar</button>
+                       <button class="action-button whatsapp-button" data-target="contenidoResultadoModulo06">Compartir</button>
                    </div>
                 </div>
             </section>
 
             <section id="finalSummary" class="hidden">
-                <h2>Resumen del Cálculo</h2>
+                <h2>Resumen del cálculo</h2>
                 <div id="summaryContent" class="result-box"></div>
                 <div class="action-buttons summary-buttons">
-                    <button id="btnCopiarResumen" class="action-button copy-button-yellow">Copiar Resumen</button>
-                    <button id="btnCompartirResumen" class="action-button whatsapp-button">Compartir Resumen</button>
+                    <button id="btnCopiarResumen" class="action-button copy-button-yellow">Copiar resumen</button>
+                    <button id="btnCompartirResumen" class="action-button whatsapp-button">Compartir resumen</button>
                 </div>
             </section>
 
-            <button id="btnNuevoCalculo" class="reset-button hidden">Nuevo Cálculo</button>
-
+            <button id="btnNuevoCalculo" class="reset-button hidden">Nuevo cálculo</button>
         </main>
     </div>
-
+    
+    <!-- Script Principal -->
     <script src="app.js"></script>
 </body>
 </html>
