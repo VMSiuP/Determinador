@@ -1,41 +1,34 @@
-const CACHE_NAME = 'determinador-cache-v1';
+const CACHE_NAME = 'determinador-cache-v6';
 const URLS_TO_CACHE = [
     '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json',
-    '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png'
+    'index.html',
+    'styles.css',
+    'app.js',
+    'manifest.json',
+    'icons/icon-192x192.png',
+    'icons/icon-512x512.png'
 ];
 
-// Instalación del Service Worker: se abre la caché y se añaden los archivos base.
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME)
             .then(cache => {
-                console.log('Opened cache');
+                console.log('Opened cache and caching files');
                 return cache.addAll(URLS_TO_CACHE);
             })
     );
+    self.skipWaiting();
 });
 
-// Evento fetch: responde con los assets desde la caché si están disponibles.
 self.addEventListener('fetch', event => {
     event.respondWith(
         caches.match(event.request)
             .then(response => {
-                // Si la respuesta está en la caché, la devuelve.
-                if (response) {
-                    return response;
-                }
-                // Si no, la busca en la red.
-                return fetch(event.request);
+                return response || fetch(event.request);
             })
     );
 });
 
-// Evento activate: limpia las cachés antiguas para mantener la app actualizada.
 self.addEventListener('activate', event => {
     const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
@@ -43,10 +36,12 @@ self.addEventListener('activate', event => {
             return Promise.all(
                 cacheNames.map(cacheName => {
                     if (cacheWhitelist.indexOf(cacheName) === -1) {
+                        console.log('Deleting old cache:', cacheName);
                         return caches.delete(cacheName);
                     }
                 })
             );
         })
     );
+    return self.clients.claim();
 });
