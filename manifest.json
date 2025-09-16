@@ -2,7 +2,7 @@
   "name": "Determinador",
   "short_name": "Determinador",
   "description": "Calculadora de pena privativa de libertad para el sistema penal peruano.",
-  "start_url": "/index.html",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1a2b48",
@@ -19,3 +19,4 @@
     }
   ]
 }
+
