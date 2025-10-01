@@ -1,7 +1,7 @@
 /* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/* Variables de Color Simplificadas para Robustez */
+/* Variables de Color */
 :root {
     --bg-color: #f4f7fc;
     --surface-color: #ffffff;
@@ -82,6 +82,10 @@ input[type="number"], select {
 p.instruction { font-weight: 600; margin-bottom: 10px; text-align: left; }
 .checkbox-group div { margin-bottom: 10px; }
 .checkbox-group label { display: flex; align-items: center; gap: 8px; cursor: pointer; text-align: left; }
+.submodule.disabled-visuals {
+    opacity: 0.7;
+    background-color: var(--input-bg-color);
+}
 
 /* Botones */
 .main-button, .reset-button, .action-button {
@@ -89,7 +93,16 @@ p.instruction { font-weight: 600; margin-bottom: 10px; text-align: left; }
     border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s ease-in-out;
     margin-top: 10px; text-align: center;
 }
-.main-button:hover, .reset-button:hover, .action-button:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+.main-button:hover, .reset-button:hover, .action-button:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); 
+}
+.main-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
 .main-button { background-color: var(--accent-color); color: white; }
 .reset-button { background-color: var(--reset-blue-color); color: white; margin-top: 20px; }
 .action-buttons { display: flex; gap: 10px; margin-top: 15px; }
@@ -119,3 +132,4 @@ p.instruction { font-weight: 600; margin-bottom: 10px; text-align: left; }
     h2 { font-size: 1.5rem; }
     .pena-display, .action-buttons { flex-direction: column; }
 }
+
