@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Determinador</title>
     
-    <!-- Manifest y Tema -->
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#1a2b48">
     
-    <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Hoja de Estilos -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -29,15 +26,16 @@
                 <span>Modo oscuro</span>
             </div>
             <h1>DETERMINADOR</h1>
-            <p class="credits">Creado, desarrollado e implementado por <strong>Víctor Manuel Siu Puyén</strong>.</p>
-            <p class="description">Obtén paso a paso la pena privativa de libertad concreta a imponer, considerando las diversas circunstancias que afectan la responsabilidad penal y el sistema de determinación.</p>
+            <p class="credits">Creado por <strong>Víctor Manuel Siu Puyén</strong>. Dedicado a <strong>Cindy, Andrés y Abril</strong>.</p>
+            <p class="description">Obtén paso a paso la pena privativa de libertad concreta a imponer considerando las diversas circunstancias que afectan la responsabilidad penal y el sistema de determinación.</p>
+            <p class="header-contact">Ponte en contacto con el creador mediante <a href="https://wa.me/51969761336">WhatsApp</a></p>
         </header>
 
         <main>
             <!-- MÓDULO 01: Pena Abstracta -->
             <section id="module01">
                 <div class="input-group">
-                    <p class="instruction">Ingresa los extremos mínimo y máximo de la pena abstracta del tipo penal.</p>
+                    <p class="instruction">Ingresa los extremos mínimo y máximo de la pena abstracta del tipo penal</p>
                     <div class="pena-inputs">
                         <fieldset>
                             <legend>Extremo mínimo del tipo</legend>
@@ -58,10 +56,10 @@
                     <label for="circunstancias">¿Tienes circunstancias agravantes cualificadas o atenuantes privilegiadas?</label>
                     <select id="circunstancias">
                         <option value="" selected disabled>Seleccione una opción</option>
-                        <option value="no">No.</option>
-                        <option value="incremento">Sí, por encima del máximo legal.</option>
-                        <option value="disminucion">Sí, por debajo del mínimo legal.</option>
-                        <option value="ambas">Sí, ambas.</option>
+                        <option value="no">No</option>
+                        <option value="incremento">Sí, por encima del máximo legal</option>
+                        <option value="disminucion">Sí, por debajo del mínimo legal</option>
+                        <option value="ambas">Sí, ambas</option>
                     </select>
                 </div>
                 
@@ -81,7 +79,7 @@
                     <div class="checkbox-group">
                         <div><label><input type="checkbox" name="disminucionFactor" value="2/3"> 2/3 (Delito crediticio)</label></div>
                         <div><label><input type="checkbox" name="disminucionFactor" value="1/2"> 1/2 (Tentativa de delito menos grave)</label></div>
-                        <div><label><input type="checkbox" name="disminucionFactor" value="1/3"> 1/3 (Tentativa de delito grave, Tentativa especial, Edad, Confesión sincera, Violencia insignificante abigeato)</label></div>
+                        <div><label><input type="checkbox" name="disminucionFactor" value="1/3"> 1/3 (Tentativa de delito grave, Tentativa especial, Violencia insignificante abigeato, Confesión sincera, Edad)</label></div>
                         <div><label><input type="checkbox" name="disminucionFactor" value="1/6"> 1/6 (Tentativa de delito especialmente grave)</label></div>
                     </div>
                     <button id="btnCalcularDisminucion" class="main-button">Calcular</button>
@@ -102,7 +100,7 @@
                          <div class="checkbox-group">
                             <div><label><input type="checkbox" name="disminucionFactorAmbas" value="2/3"> 2/3 (Delito crediticio)</label></div>
                             <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/2"> 1/2 (Tentativa de delito menos grave)</label></div>
-                            <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/3"> 1/3 (Tentativa de delito grave, Tentativa especial, Edad, Confesión sincera, Violencia insignificante abigeato)</label></div>
+                            <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/3"> 1/3 (Tentativa de delito grave, Tentativa especial, Violencia insignificante abigeato, Confesión sincera, Edad)</label></div>
                             <div><label><input type="checkbox" name="disminucionFactorAmbas" value="1/6"> 1/6 (Tentativa de delito especialmente grave)</label></div>
                         </div>
                     </div>
@@ -118,9 +116,9 @@
             <section id="module02" class="hidden">
                 <h2>Elegir sistema de determinación</h2>
                 <select id="sistemaDeterminacion">
-                    <option value="" selected disabled>Seleccione un sistema.</option>
-                    <option value="tercios">Sistema de tercios.</option>
-                    <option value="escalonado">Sistema escalonado.</option>
+                    <option value="" selected disabled>Seleccione un sistema</option>
+                    <option value="tercios">Sistema de tercios</option>
+                    <option value="escalonado">Sistema escalonado</option>
                 </select>
             </section>
             
@@ -171,7 +169,7 @@
                     <div><label><input type="checkbox" name="reduccionPena" value="1/3"> 1/3 (Confesión sincera)</label></div>
                     <div><label><input type="checkbox" name="reduccionPena" value="1/4"> 1/4 (Interés superior del niño, Plazo razonable)</label></div>
                     <div><label><input type="checkbox" name="reduccionPena" value="1/6"> 1/6 (Terminación anticipada, Violencia o amenaza mínima, Valor del bien no supera 5% UIT, Arma simulada)</label></div>
-                    <div><label><input type="checkbox" name="reduccionPena" value="1/7"> 1/7 (Conclusión anticipada, Reparación espontánea del daño, Devolución del bien)</label></div>
+                    <div><label><input type="checkbox" name="reduccionPena" value="1/7"> 1/7 (Reparación espontánea del daño, Devolución del bien)</label></div>
                  </div>
                  <button id="btnCalcularReduccion" class="main-button">Calcular Reducción</button>
                  <div id="resultadoModulo05" class="result-box hidden">
@@ -196,19 +194,17 @@
             </section>
 
             <section id="finalSummary" class="hidden">
-                <h2>Resumen del cálculo</h2>
+                <h2>Resumen del Cálculo</h2>
                 <div id="summaryContent" class="result-box"></div>
                 <div class="action-buttons summary-buttons">
-                    <button id="btnCopiarResumen" class="action-button copy-button-yellow">Copiar resumen</button>
-                    <button id="btnCompartirResumen" class="action-button whatsapp-button">Compartir resumen</button>
+                    <button id="btnCopiarResumen" class="action-button copy-button-yellow">Copiar Resumen</button>
+                    <button id="btnCompartirResumen" class="action-button whatsapp-button">Compartir Resumen</button>
                 </div>
             </section>
 
-            <button id="btnNuevoCalculo" class="reset-button hidden">Nuevo cálculo</button>
+            <button id="btnNuevoCalculo" class="reset-button hidden">Nuevo Cálculo</button>
         </main>
     </div>
-    
-    <!-- Script Principal -->
     <script src="app.js"></script>
 </body>
 </html>
