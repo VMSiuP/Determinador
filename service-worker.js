@@ -1,4 +1,4 @@
-const CACHE_NAME = 'determinador-cache-v31'; // Salto de versión para forzar actualización
+const CACHE_NAME = 'determinador-cache-v32'; // Salto de versión para forzar actualización
 const URLS_TO_CACHE = [
     './',
     './index.html',
@@ -61,3 +61,4 @@ self.addEventListener('fetch', event => {
             })
     );
 });
+
