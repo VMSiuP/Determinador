@@ -134,7 +134,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const summaryHtml = state.summary.map(item => {
             const tempDiv = document.createElement('div');
             tempDiv.innerHTML = item.text; // Usamos innerHTML para interpretar <br>
-            // No limpiamos el texto aquí para mantener el formato en la visualización
             return `<h4>${item.title}</h4><p>${tempDiv.innerHTML}</p>`;
         }).join('');
         ui.summaryContent.innerHTML = summaryHtml;
@@ -255,14 +254,15 @@ document.addEventListener('DOMContentLoaded', () => {
         state.basePenaltyForReduction = penaConcreta;
         state.finalPenaltyDays = penaConcreta;
 
-        const contentForDisplay = `<p>Pena concreta: <strong>${formatYMD(fromDays(penaConcreta))}</strong></p>`;
-        const contentForSummary = `Agravantes del tipo penal: ${totalAgravantes}<br>Agravantes del caso concreto: ${casoAgravantes}<br>Cada agravante equivale a: ${formatYMD(fromDays(valorAgravante))}<br>Incremento por ${casoAgravantes} agravante(s): ${formatYMD(fromDays(incremento))}<br><b>Pena concreta: ${formatYMD(fromDays(penaConcreta))}</b>`;
+        const content = `<p>Cada agravante equivale a: <strong>${formatYMD(fromDays(valorAgravante))}</strong></p><p>Incremento por ${casoAgravantes} agravante(s): <strong>${formatYMD(fromDays(incremento))}</strong></p><p>Pena concreta: <strong>${formatYMD(fromDays(penaConcreta))}</strong></p>`;
         
+        const summaryText = `Agravantes del tipo penal: ${totalAgravantes}<br>Agravantes del caso concreto: ${casoAgravantes}<br>${content.replace(/<strong>/g, '<b>').replace(/<\/strong>/g, '</b>').replace(/<p>/g, '').replace(/<\/p>/g, '<br>')}`;
+
         const resultElement = document.getElementById('resultadoModulo04');
-        ui.contenidoResultadoModulo04.innerHTML = contentForDisplay;
+        ui.contenidoResultadoModulo04.innerHTML = content;
         show(resultElement);
         show(ui.module05); show(ui.module06);
-        updateSummary('Sistema Escalonado', contentForSummary);
+        updateSummary('Sistema Escalonado', summaryText);
         renderSummary();
         resultElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
@@ -318,10 +318,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!element) return '';
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = element.innerHTML;
-        // Reemplaza <br> con saltos de línea y <h4> con un formato de título
         tempDiv.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
         tempDiv.querySelectorAll('h4').forEach(h4 => h4.replaceWith(`\n--- ${h4.textContent.toUpperCase()} ---\n`));
-        // Limpia cualquier HTML restante (como <strong>) para obtener solo texto plano
         return tempDiv.textContent || tempDiv.innerText;
     };
 
